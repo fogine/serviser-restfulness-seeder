@@ -1,0 +1,37 @@
+{
+  "name": "bi-service-restfulness-seeder",
+  "version": "0.3.0",
+  "description": "Populates sql tables with valid data",
+  "main": "index.js",
+  "testFramework": "mocha",
+  "author": "fogine",
+  "contributors": [
+    "fogine"
+  ],
+  "private": false,
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "license": "None",
+  "files": [
+    "lib",
+    "index.js",
+    "LICENCE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec false -t 30000 'test/src/**/*.js'",
+    "tests": "mocha --ui bdd --colors --check-leaks -t 30000 --reporter spec 'test/src/**/*.js'",
+    "test": "npm run tests"
+  },
+  "peerDependencies": {
+    "bi-service": "^1.0.0",
+    "bi-service-restfulness": "*"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "faker": "^4.1.0",
+    "json-schema-faker": "^0.5.0-rc16",
+    "lodash": "^4.16.2"
+  }
+}

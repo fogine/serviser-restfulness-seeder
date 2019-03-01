@@ -163,14 +163,14 @@ function registerSeedCommand(yargs) {
             sortSeeders(seederSchemas);
 
             return seed(knex, seederSchemas, resources, argv.n);
+        }).then(function() {
+            process.stdout.write('OK\n');
+            process.exit(0);
+        }).catch(function(err) {
+            console.error(err);
+            process.exit(1);
         });
-    }.then(function() {
-        process.stdout.write('OK\n');
-        process.exit(0);
-    }).catch(function(err) {
-        console.error(err);
-        process.exit(1);
-    });
+    };
 }
 
 /**

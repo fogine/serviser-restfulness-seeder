@@ -180,7 +180,7 @@ function seed(knex, seeders, resources, seedNumber) {
         const resource = resources[tableName];
         return resource.query(knex)
             .pluck(resource.getKeyName()).then(function(ids) {
-                seededData[tableName] = ids;
+                seededData.primaryKeys[tableName] = ids;
             });
     }).then(function() {
         return seeders;

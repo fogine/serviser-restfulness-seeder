@@ -42,9 +42,9 @@ function registerSeedCommand(yargs) {
     const DB_VENDOR  = knex.client.constructor.name;
 
     yargs.command('seed', 'populate sql tables with testing fake data', {
-        resource: {
-            alias: '-r',
-            describe: 'list of resources to populate',
+        exclude: {
+            alias: '-e',
+            describe: 'list of resources to exclude',
             type: 'string',
             default: [],
             array: true
@@ -61,18 +61,9 @@ function registerSeedCommand(yargs) {
         const resources = {};
         let dbTables;
 
-        if (!argv.resource.length) {
-            //TODO refactor when Resource.registry is instance of Array
-            //resources = Resource.registry;
-            Resource.registry.forEach(function(resource) {
-                resources[resource.getTableName()] = resource;
-            });
-        } else {
-            argv.resource.forEach(function(singularName) {
-                const resource = Resource.registry.getBySingularName(singularName);
-                resources[resource.getTableName()] = resource;
-            });
-        }
+        Resource.registry.forEach(function(resource) {
+            resources[resource.getTableName()] = resource;
+        });
 
         if (!SQL_TYPES[DB_VENDOR]) {
             throw new Error('Unsupported db vendor');
@@ -86,10 +77,10 @@ function registerSeedCommand(yargs) {
             });
 
             dbTables = _.intersection(listOfTablesInDb, tableNames);
+            dbTables = _.difference(dbTables, argv.exclude);
 
             return Promise.map(dbTables, function(table) {
                 return sqlUtils.tableInfo(knex, table);
-                //return resources[table].query(knex).columnInfo();
             });
         }).then(function(data) {
             const seederSchemas = [];

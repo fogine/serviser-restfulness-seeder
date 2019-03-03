@@ -30,4 +30,14 @@ Options:
   --help, -h  Show help                                                                                                  [boolean]
   --config    Custom config file destination                                                                              [string]
   --version   Prints bi-service version                                                                                  [boolean]
+
+
+
+> bi-service seed --help
+/bin/bi-service seed
+
+Options:
+  --help, -h       Show help                                                                                             [boolean]
+  --exclude, ---e  list of table names to exclude                                                            [array] [default: []]
+  --number, ---n   how many records to seed                                                                 [number] [default: 20]
 ```

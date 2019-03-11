@@ -1,7 +1,7 @@
 const Promise         = require('bluebird');
 const _               = require('lodash');
-const Service         = require('bi-service');
-const Restfulness     = require('bi-service-restfulness');
+const Service         = require('serviser');
+const Restfulness     = require('serviser-restfulness');
 const jsf             = require('json-schema-faker');
 
 const sqlUtils = require('./lib/sqlUtils.js');

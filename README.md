@@ -1,4 +1,4 @@
-Populate sql tables with valid data.
+Populates sql tables with dummy data according to resource `json-schema`.
 
 Register the plugin by `require`ing it in where your `Service` initialization is at (`index.js`);
 
